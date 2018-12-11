@@ -7,7 +7,7 @@ class List extends Component {
     render() {
         return (
             <ul>
-                {tasks.map((task) => <li key={task}>{task}</li>)}
+                {this.props.tasks.map((task) => <li key={task}>{task}</li>)}
             </ul>
         );
     }
@@ -15,15 +15,16 @@ class List extends Component {
 
 class Header extends Component {
     render() {
-        return <h1>My List</h1>
+        return <h1>{this.props.title}</h1>
     }
 }
 
 class Main extends Component {
     render() {
         return  <div>
-                    <Header />
-                    <List />
+                    <Header title={'My Props Title'} />
+                    <List tasks={['thing one','thing two']}/>
+										<List tasks={['cat one','cat two']}/>
                 </div>
     }
 }
