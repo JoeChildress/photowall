@@ -45,6 +45,7 @@ body {
  padding: 2rem;
  flex-grow: 1;
  margin: 0 2rem 2rem 2rem;
+ 
 }
 .figure .single-photo {
  flex-basis: calc(33.333% - 4rem);
