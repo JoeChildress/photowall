@@ -1,9 +1,15 @@
 import React, {Component} from 'react'
 import Title from './Title'
 import PhotoWall from './PhotoWall'
+import AddPhoto from './AddPhoto'
+import {Route} from 'react-router-dom'
 
 class Main extends Component {
+
+    //CONSTRUCTOR GETS CALLED BEFORE COMP GETS MOUNTED
     constructor() {
+
+        //ALLOWS THE USE OF THIS WHEN EXTENDING TO ANOTHER CLASS
         super()
         this.state = {
             posts: [{
@@ -20,10 +26,12 @@ class Main extends Component {
                 id: "2",
                 description: "On a vacation!",
                 imageLink: "https://fm.cnbc.com/applications/cnbc.com/resources/img/editorial/2017/08/24/104670887-VacationExplainsTHUMBWEB.1910x1000.jpg"
-                }]
+                }],
+            screen: 'photos'
         } 
         
         this.removePhoto = this.removePhoto.bind(this);
+        this.addPhoto = this.addPhoto.bind(this);
     }
 
     removePhoto(postRemoved) {
@@ -33,23 +41,50 @@ class Main extends Component {
         }))
     }
 
+    addPhoto(newPost) {
+        this.setState((state) => ({
+            posts: state.posts.concat([newPost])
+        }))
+    }
+
+
+    //CALLED AFTER INITIAL INSERTION OF COMPONENT
+    //USE FOR ASYNC DATA CALLS TO UPDATE STATE
     componentDidMount() {
-        const data = this.simulateFetchFromDataBase()
+
+        //SIMULATED FETCH FOR DATA
+        const data = this.simulateFetchFromDataBase();
+
+        //UPDATE STATE WITH NEW DATA WHICH TRIGGERS RENDER
         this.setState({
             posts: data
         })
     }
 
-    componentDidUpdate(prevProps, prevState) {
-        console.log(prevState.posts);
-        console.log(this.state.posts);
-    }
-
     render() {
+
+        //USE EXACT PATH FOR BASE URL BECAUSE OTHER URLS CONTAIN / AS WELL
+        //USE HISTORY TO UPDATE THE PATH
         return  <div>
-                    <Title title={'Photowall'} />
-					<PhotoWall posts={this.state.posts} onRemovePhoto={this.removePhoto}/>
-                </div>
+            
+            <Route exact path='/' render = {() => (
+                    <div>
+                            <Title title={'Photowall'} />
+                            <PhotoWall posts={this.state.posts} onRemovePhoto={this.removePhoto} />
+                    </div>
+            )} />  
+
+            
+            <Route path='/AddPhoto' render = {({history}) => (
+                    <div>
+                        <AddPhoto onAddPhoto={(addedPhoto) => {
+                            this.addPhoto(addedPhoto)
+                            history.push("/");
+                        }} />
+                    </div>
+            )}/>       
+        </div>
+
     }
 
     simulateFetchFromDataBase() {
