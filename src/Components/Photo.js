@@ -18,7 +18,6 @@ class Photo extends Component {
 
 Photo.PropTypes = {
 	post: PropTypes.object.isRequired,
-	onRemovePhoto: PropTypes.func.isRequired
 }
 
 export default Photo

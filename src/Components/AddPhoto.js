@@ -13,13 +13,14 @@ class AddPhoto extends Component {
         const imageLink = e.target.elements.link.value
         const imageDescription = e.target.elements.description.value
         const post = {
-            index: 0,
+            id: Number(new Date()),
             description: imageDescription,
             imageLink: imageLink
         }
 
         if (imageLink && imageDescription) {
             this.props.onAddPhoto(post);
+            console.log(post);
         }
     }
 
