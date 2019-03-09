@@ -2,7 +2,8 @@ import React, {Component} from 'react'
 import Title from './Title'
 import PhotoWall from './PhotoWall'
 import AddPhoto from './AddPhoto'
-import {Route} from 'react-router-dom'
+import {Route, Link} from 'react-router-dom'
+
 //import {removePost} from '../redux/actions'
 
 class Main extends Component {
@@ -20,23 +21,22 @@ class Main extends Component {
 
 			//USE EXACT PATH FOR BASE URL BECAUSE OTHER URLS CONTAIN / AS WELL
 			//USE HISTORY TO UPDATE THE PATH
-			return ( <div>
-					
+			return ( 
+				<div>
+					<h1>
+						 <Link to='/'>Photowall</Link>
+					</h1> 
 					<Route exact path='/' render = {() => (
 						<div>
-							<Title title={'Photowall'} />
 							<PhotoWall {...this.props} />
 						</div>
 					)} /> 
 					
-					{/* <Route path='/AddPhoto' render = {({history}) => (
+					<Route path='/AddPhoto' render = {({history}) => (
 						<div>
-							<AddPhoto onAddPhoto={(addedPhoto) => {
-								this.addPhoto(addedPhoto)
-								history.push("/");
-							}} />
+							<AddPhoto {...this.props} onHistory={history} />
 						</div>
-					)}/>        */}
+					)}/>        
 			</div>
 			)
 				}

@@ -4,8 +4,13 @@
 export function removePost(index) {
   return {
     type: 'REMOVE_POST',
-    index: index
+    index //ES6 SHORTCUT TO SAME KEY/VALUE
   }
 }
 
-//ADD POSTS
+export function addPost(post) {
+  return {
+    type: 'ADD_POST',
+    post
+  }
+}
