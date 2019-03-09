@@ -9,7 +9,7 @@ class Photo extends Component {
 				<figcaption><p>{post.description}</p></figcaption>
 				<div className="button-container">
 					<button onClick={() => {
-						this.props.onRemovePhoto(post)
+						this.props.removePost(this.props.index)
 					}}> Remove </button>
 				</div>
 			</figure>

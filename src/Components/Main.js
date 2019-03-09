@@ -3,6 +3,7 @@ import Title from './Title'
 import PhotoWall from './PhotoWall'
 import AddPhoto from './AddPhoto'
 import {Route} from 'react-router-dom'
+//import {removePost} from '../redux/actions'
 
 class Main extends Component {
 
@@ -13,9 +14,9 @@ class Main extends Component {
 			super()
 			
 		}
-		
+
     render() {
-			//console.log(this.props.posts)
+			console.log(this.props)
 
 			//USE EXACT PATH FOR BASE URL BECAUSE OTHER URLS CONTAIN / AS WELL
 			//USE HISTORY TO UPDATE THE PATH
@@ -24,10 +25,9 @@ class Main extends Component {
 					<Route exact path='/' render = {() => (
 						<div>
 							<Title title={'Photowall'} />
-							<PhotoWall posts={this.props.posts}/>
+							<PhotoWall {...this.props} />
 						</div>
-					)} />  
-
+					)} /> 
 					
 					{/* <Route path='/AddPhoto' render = {({history}) => (
 						<div>
