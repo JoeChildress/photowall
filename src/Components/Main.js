@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import Title from './Title'
 import PhotoWall from './PhotoWall'
 import AddPhoto from './AddPhoto'
+import Single from './Single'
 import {Route, Link} from 'react-router-dom'
 
 //import {removePost} from '../redux/actions'
@@ -34,9 +35,15 @@ class Main extends Component {
 					
 					<Route path='/AddPhoto' render = {({history}) => (
 						<div>
-							<AddPhoto {...this.props} onHistory={history} />
+							<AddPhoto {...this.props} />
 						</div>
-					)}/>        
+					)}/>
+
+					<Route path='/single/:id' render = {(params) => (
+						<div>
+							<Single {...this.props} {...params} />
+						</div>
+					)}/>
 			</div>
 			)
 				}

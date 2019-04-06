@@ -11,6 +11,6 @@ import App from './Components/App';
 
 //store - app state lives here
 //reducer - data source
-const store = createStore(rootReducer)
+const store = createStore(rootReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
 
 ReactDOM.render(<Provider store={store}><BrowserRouter><App /></BrowserRouter></Provider>, document.getElementById('root'));
